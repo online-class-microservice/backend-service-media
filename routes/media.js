@@ -5,6 +5,21 @@ const base64Img = require('base64-img');
 
 const { Media } = require('../models')
 
+router.get('/', async function(req, res) {
+    const media = await Media.findAll({
+        attributes: ['id', 'image']
+    });
+    media.map((item) => {
+        item.image = `${req.get('host')}/${item.image}`
+        return item
+    });
+
+    return res.json({
+        status: 'success',
+        data: media
+    });
+});
+
 // https://base64.guru/converter/encode/image
 router.post('/', function(req, res) {
     const image = req.body.image;
