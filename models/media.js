@@ -1,29 +1,29 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    const media = sequelize.define('media', {
+    const Media = sequelize.define('Media', {
         id: {
-            type: Sequelize.INTEGER,
+            type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
             allowNull: false
         },
         image: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         createdAt: {
             field: 'created_at',
-            type: Sequelize.DATE,
+            type: DataTypes.DATE,
             allowNull: false
         },
         updatedAt: {
             field: 'updated_at',
-            type: Sequelize.DATE,
+            type: DataTypes.DATE,
             allowNull: false
         }
     }, {
         tableName: 'media',
         schema: process.env.NODE_ENV
     })
-    return media;
+    return Media;
 };
